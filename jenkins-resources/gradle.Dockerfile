@@ -9,13 +9,14 @@ RUN apt update
 RUN apt install -y openjdk-17-jdk
 
 # Gradle version
-ARG GRADLE_VERSION=6.6.1
+#ARG GRADLE_VERSION=6.6.1
+ARG GRADLE_VERSION=7.3
 
 # Define the URL where gradle can be downloaded
 ARG GRADLE_BASE_URL=https://services.gradle.org/distributions
 
 # Define the SHA key to validate the gradle download
-ARG GRADLE_SHA=7873ed5287f47ca03549ab8dcb6dc877ac7f0e3d7b1eb12685161d10080910ac
+ARG GRADLE_SHA=de8f52ad49bdc759164f72439a3bf56ddb1589c4cde802d3cec7d6ad0e0ee410
 
 # Create the directories, download gradle, validate the download
 # install it remove download file and set links
