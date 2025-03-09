@@ -23,12 +23,6 @@ pipeline {
                 dir('jenkins-resources/calculator') {
                     // Dar permisos de ejecución al gradlew
                     sh 'chmod +x ./gradlew'
-                    
-                    // Compilar el código fuente especificando Java 17
-                    sh '''
-                        export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
-                        ./gradlew compileJava --info
-                    '''
                 }
             }
         }
