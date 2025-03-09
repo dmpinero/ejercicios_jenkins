@@ -5,6 +5,9 @@ USER root
 # Reference install gradle: https://medium.com/@migueldoctor/how-to-create-a-custom-docker-image-with-jdk8-maven-and-gradle-ddc90f41cee4
 RUN apt update
 
+# Instalar Java 17
+RUN apt install -y openjdk-17-jdk
+
 # Gradle version
 ARG GRADLE_VERSION=6.6.1
 
@@ -25,6 +28,6 @@ RUN mkdir -p /usr/share/gradle /usr/share/gradle/ref \
   && echo "Clenaing and setting links" && rm -f /tmp/gradle.zip \
   && ln -s /usr/share/gradle/gradle-${GRADLE_VERSION} /usr/bin/gradle
 
-ENV GRADLE_VERSION 6.6.1
-ENV GRADLE_HOME /usr/bin/gradle
-ENV PATH $PATH:$GRADLE_HOME/bin
+ENV GRADLE_VERSION=6.6.1
+ENV GRADLE_HOME=/usr/bin/gradle
+ENV PATH=$PATH:$GRADLE_HOME/bin
