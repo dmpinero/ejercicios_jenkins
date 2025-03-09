@@ -23,6 +23,10 @@ pipeline {
                 dir('jenkins-resources/calculator') {
                     // Dar permisos de ejecución al gradlew
                     sh 'chmod +x ./gradlew'
+                    
+                    // Compilar el código fuente
+                    sh './gradlew compileJava'
+
                 }
             }
         }
