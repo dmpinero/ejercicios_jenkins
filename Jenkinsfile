@@ -15,7 +15,7 @@ pipeline {
         
         stage('Compile') {
             steps {
-                dir('calculator') {
+                dir('jenkins-resources/calculator') {
                     // Dar permisos de ejecución al gradlew
                     sh 'chmod +x ./gradlew'
                     
