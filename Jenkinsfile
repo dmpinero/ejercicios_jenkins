@@ -26,7 +26,6 @@ pipeline {
                     
                     // Compilar el código fuente
                     sh './gradlew compileJava'
-
                 }
             }
         }
