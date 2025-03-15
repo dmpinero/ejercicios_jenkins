@@ -35,11 +35,8 @@ pipeline {
                     // Dar permisos de ejecución al gradlew
                     sh 'chmod +x ./gradlew'
                     
-                    // Compilar el código fuente especificando Java 17
-                    sh '''
-                        export JAVA_HOME=/opt/java/openjdk
-                        ./gradlew compileJava --info
-                    '''
+                    // Compilar el código fuente usando el JDK configurado en tools
+                    sh './gradlew compileJava --info'
                 }
             }
         }
