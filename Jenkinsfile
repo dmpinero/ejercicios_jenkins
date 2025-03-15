@@ -28,6 +28,14 @@ pipeline {
             }
         }
 
+        stage('Update Gradle') {
+            steps {
+                dir('jenkins-resources/calculator') {
+                    sh './gradlew wrapper --gradle-version 7.6'
+                }
+            }
+        }
+
         stage('Check Environment') {
             steps {
                 sh '''
