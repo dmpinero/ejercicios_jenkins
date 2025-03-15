@@ -37,7 +37,7 @@ pipeline {
                     
                     // Compilar el código fuente especificando Java 17
                     sh '''
-                        export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+                        export JAVA_HOME=/opt/java/openjdk
                         ./gradlew compileJava --info
                     '''
                 }
