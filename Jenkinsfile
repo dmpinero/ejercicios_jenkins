@@ -18,6 +18,16 @@ pipeline {
             }
         }
 
+        stage('Set Permissions') {
+            steps {
+                sh '''
+                    echo "=== Setting Gradle Wrapper Permissions ==="
+                    chmod +x jenkins-resources/calculator/gradlew
+                    ls -la jenkins-resources/calculator/gradlew
+                '''
+            }
+        }
+
         stage('Check Environment') {
             steps {
                 sh '''
@@ -43,9 +53,6 @@ pipeline {
         stage('Compile') {
             steps {
                 dir('jenkins-resources/calculator') {
-                    // Dar permisos de ejecución al gradlew
-                    sh 'chmod +x ./gradlew'
-                    
                     // Compilar el código fuente usando el JDK configurado en tools
                     sh '''
                         ./gradlew clean
