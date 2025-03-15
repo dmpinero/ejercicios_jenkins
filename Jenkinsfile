@@ -2,8 +2,7 @@ pipeline {
     agent any
 
     tools {
-        // Cambiar a Java 11
-        jdk 'JDK11'
+        jdk 'JDK17'
     }
 
     stages {
@@ -23,25 +22,28 @@ pipeline {
                 sh '''
                     echo "=== Setting Gradle Wrapper Permissions ==="
                     chmod +x jenkins-resources/calculator/gradlew
-                    ls -la jenkins-resources/calculator/gradlew
                 '''
+            }
+        }
+
+        stage('Update Gradle') {
+            steps {
+                dir('jenkins-resources/calculator') {
+                    // Primero actualizamos el wrapper de Gradle
+                    sh '''
+                        rm -f gradle/wrapper/gradle-wrapper.jar
+                        rm -f gradle/wrapper/gradle-wrapper.properties
+                        ./gradlew wrapper --gradle-version 7.6 --distribution-type bin
+                    '''
+                }
             }
         }
 
         stage('Check Environment') {
             steps {
-                sh '''
-                    echo "=== Java Version ==="
-                    java -version
-                    echo "\n=== JAVA_HOME ==="
-                    echo $JAVA_HOME
-                '''
-                
+                sh 'java -version'
                 dir('jenkins-resources/calculator') {
-                    sh '''
-                        echo "\n=== Gradle Version ==="
-                        ./gradlew --version
-                    '''
+                    sh './gradlew --version'
                 }
             }
         }
@@ -50,10 +52,7 @@ pipeline {
             steps {
                 dir('jenkins-resources/calculator') {
                     // Compilar el código fuente usando el JDK configurado en tools
-                    sh '''
-                        ./gradlew clean
-                        ./gradlew compileJava --info
-                    '''
+                    sh './gradlew clean compileJava --info'
                 }
             }
         }
