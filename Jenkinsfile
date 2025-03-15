@@ -18,14 +18,25 @@ pipeline {
             }
         }
 
-        stage('Check Java Version') {
+        stage('Check Environment') {
             steps {
                 sh '''
-                    echo "Java version:"
+                    echo "=== Java Version ==="
                     java -version
-                    echo "JAVA_HOME:"
+                    echo "\n=== JAVA_HOME ==="
                     echo $JAVA_HOME
+                    echo "\n=== Which Java ==="
+                    which java
+                    echo "\n=== Java Path ==="
+                    readlink -f $(which java)
                 '''
+                
+                dir('jenkins-resources/calculator') {
+                    sh '''
+                        echo "\n=== Gradle Version ==="
+                        ./gradlew --version
+                    '''
+                }
             }
         }
         
@@ -36,7 +47,10 @@ pipeline {
                     sh 'chmod +x ./gradlew'
                     
                     // Compilar el código fuente usando el JDK configurado en tools
-                    sh './gradlew compileJava --info'
+                    sh '''
+                        ./gradlew clean
+                        ./gradlew compileJava --debug
+                    '''
                 }
             }
         }
