@@ -29,11 +29,18 @@ pipeline {
         stage('Update Gradle') {
             steps {
                 dir('jenkins-resources/calculator') {
-                    // Primero actualizamos el wrapper de Gradle
+                    // Crear directorio si no existe
+                    sh 'mkdir -p gradle/wrapper'
+                    
+                    // Descargar los archivos necesarios del wrapper
                     sh '''
-                        rm -f gradle/wrapper/gradle-wrapper.jar
-                        rm -f gradle/wrapper/gradle-wrapper.properties
-                        ./gradlew wrapper --gradle-version 7.6 --distribution-type bin
+                        wget -O gradle/wrapper/gradle-wrapper.jar https://github.com/gradle/gradle/raw/v7.6.0/gradle/wrapper/gradle-wrapper.jar
+                        
+                        echo "distributionBase=GRADLE_USER_HOME
+distributionPath=wrapper/dists
+distributionUrl=https\\://services.gradle.org/distributions/gradle-7.6-bin.zip
+zipStoreBase=GRADLE_USER_HOME
+zipStorePath=wrapper/dists" > gradle/wrapper/gradle-wrapper.properties
                     '''
                 }
             }
