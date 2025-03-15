@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     tools {
-        // Definir la versión de Java a usar
-        jdk 'JDK17'
+        // Cambiar a Java 11
+        jdk 'JDK11'
     }
 
     stages {
@@ -28,14 +28,6 @@ pipeline {
             }
         }
 
-        stage('Update Gradle') {
-            steps {
-                dir('jenkins-resources/calculator') {
-                    sh './gradlew wrapper --gradle-version 7.6'
-                }
-            }
-        }
-
         stage('Check Environment') {
             steps {
                 sh '''
@@ -43,10 +35,6 @@ pipeline {
                     java -version
                     echo "\n=== JAVA_HOME ==="
                     echo $JAVA_HOME
-                    echo "\n=== Which Java ==="
-                    which java
-                    echo "\n=== Java Path ==="
-                    readlink -f $(which java)
                 '''
                 
                 dir('jenkins-resources/calculator') {
@@ -64,7 +52,7 @@ pipeline {
                     // Compilar el código fuente usando el JDK configurado en tools
                     sh '''
                         ./gradlew clean
-                        ./gradlew compileJava --debug
+                        ./gradlew compileJava --info
                     '''
                 }
             }
