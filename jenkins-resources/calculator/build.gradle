@@ -1,31 +1,31 @@
 plugins {
-	id 'java'
-	id 'org.springframework.boot' version '2.4.13'
-	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-}
+        id 'java'
+        id 'org.springframework.boot' version '2.4.13'
+        id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    }
 
-group = 'com.lemoncode'
-version = '0.0.1-SNAPSHOT'
+    group = 'com.lemoncode'
+    version = '0.0.1-SNAPSHOT'
 
-java {
-	sourceCompatibility = JavaVersion.VERSION_14
-	targetCompatibility = JavaVersion.VERSION_14
-}
+    java {
+        sourceCompatibility = JavaVersion.VERSION_14
+        targetCompatibility = JavaVersion.VERSION_14
+    }
 
-repositories {
-	mavenCentral()
-}
+    repositories {
+        mavenCentral()
+    }
 
-dependencies {
-	// implementation 'org.springframework.boot:spring-boot-starter'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
+    dependencies {
+        // implementation 'org.springframework.boot:spring-boot-starter'
+        implementation 'org.springframework.boot:spring-boot-starter-web'
 
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	// testImplementation('org.springframework.boot:spring-boot-starter-test') {
-	// 	exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	// }
-}
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        // testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        // 	exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+        // }
+    }
 
-test {
-	useJUnitPlatform()
-}
+    test {
+        useJUnitPlatform()
+    }
