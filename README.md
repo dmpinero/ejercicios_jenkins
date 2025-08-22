@@ -330,4 +330,11 @@ Para ejecutar Jenkins en local y tener las dependencias necesarias disponibles p
 
 * Acceder a Jenkins y crear nueva tarea de tipo Pipeline con nombre build-runner
     ![Crear nueva tarea](./images/jenkins/16.crear_nueva_tarea.png)
+
+* Configurar el pipeline
+    ![Configurar el pipeline](./images/jenkins/17.configurar_pipeline.png)
+
+* Ejecutar el pipeline build-runner y verificar que la ejecución es correcta
+    ![Ejecución correcta del pipeline](./images/jenkins/18.ejecucion_correcta_pipeline.png)
+    
     
